@@ -31,6 +31,7 @@ namespace API
             // Injecting Database connection string in Configure Service startup
             services.AddDbContext<DataContext>(options =>
             {
+                // Connection String
                 options.UseSqlite("Connection String");
             });
 
