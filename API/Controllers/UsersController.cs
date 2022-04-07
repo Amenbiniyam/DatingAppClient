@@ -1,6 +1,7 @@
 ﻿using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -19,18 +20,19 @@ namespace API.Controllers
         }
         [HttpGet]
         // IEnumerable and List method has the same uses
-        public ActionResult<IEnumerable<AppUser>> GetUsers()
+        // We use Async to make our db query fast while other quering no need to wait 
+        public async  Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             
-            return _context.Users.ToList(); ;
+            return await _context.Users.ToListAsync();
         }
 
         // api/users/3
         [HttpGet("{id}")]
         // IEnumerable and List method has the same uses
-        public ActionResult<AppUser> GetUsers(int id)
+        public async Task<ActionResult<AppUser>> GetUsers(int id)
         {
-            return _context.Users.Find(id);
+            return await _context.Users.FindAsync(id);
         }
     }
 
