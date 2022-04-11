@@ -5,9 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    
+    public class UsersController : BaseApiController
     {
         // we have to declear first in order to use it in Constructor 
         // in Dependency injection
@@ -26,7 +25,6 @@ namespace API.Controllers
             
             return await _context.Users.ToListAsync();
         }
-
         // api/users/3
         [HttpGet("{id}")]
         // IEnumerable and List method has the same uses
